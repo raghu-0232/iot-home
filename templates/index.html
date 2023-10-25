@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Relay Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+
+    .switch-label {
+      margin-right: 10px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    function toggleRelay(relayNumber) {
+      $.get('/toggle?relay=' + relayNumber, function(data) {
+        console.log(data); // Print response to console (optional)
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Annavarapu's Home</h1>
+  <div class="switch-label">Relay 1</div>
+  <label class="switch">
+    <input id="relay-switch-1" type="checkbox" onchange="toggleRelay(1)">
+    <span class="slider round"></span>
+  </label>
+  <br>
+  <div class="switch-label">Relay 2</div>
+  <label class="switch">
+    <input id="relay-switch-2" type="checkbox" onchange="toggleRelay(2)">
+    <span class="slider round"></span>
+  </label>
+  <br>
+  <div class="switch-label">Relay 3</div>
+  <label class="switch">
+    <input id="relay-switch-3" type="checkbox" onchange="toggleRelay(3)">
+    <span class="slider round"></span>
+  </label>
+  <br>
+  <div class="switch-label">Relay 4</div>
+  <label class="switch">
+    <input id="relay-switch-4" type="checkbox" onchange="toggleRelay(4)">
+    <span class="slider round"></span>
+  </label>
+</body>
+</html>
+
